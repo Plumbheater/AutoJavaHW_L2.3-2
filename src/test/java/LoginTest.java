@@ -2,6 +2,7 @@ import lombok.val;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -15,7 +16,7 @@ class LoginTest {
         $("[data-test-id = login] input").setValue(user.getLogin());
         $("[data-test-id = password] input").setValue(user.getPassword());
         $("[data-test-id = action-login]").click();
-        $("h2").shouldBe(exactText("Личный кабинет").visible);
+        $("h2").shouldBe(exactText("Личный кабинет"), visible);
     }
 
     @Test
@@ -26,8 +27,8 @@ class LoginTest {
         $("[data-test-id = login] input").setValue(user.getLogin());
         $("[data-test-id = password] input").setValue(user.getPassword() + "password");
         $("[data-test-id = action-login]").click();
-        $("[data-test-id = error-notification]").shouldBe(exactText("Ошибка").visible);
-        $("[data-test-id = error-notification]").shouldBe(exactText("Неверно указан логин или пароль").visible);
+        $(".notification__title").shouldBe(exactText("Ошибка"), visible);
+        $(".notification__content").shouldBe(exactText("Ошибка! Неверно указан логин или пароль"), visible);
 
     }
 
@@ -39,8 +40,8 @@ class LoginTest {
         $("[data-test-id = login] input").setValue(user.getLogin() + "login");
         $("[data-test-id = password] input").setValue(user.getPassword() + "password");
         $("[data-test-id = action-login]").click();
-        $("[data-test-id = error-notification]").shouldBe(exactText("Ошибка").visible);
-        $("[data-test-id = error-notification]").shouldBe(exactText("Неверно указан логин или пароль").visible);
+        $(".notification__title").shouldBe(exactText("Ошибка"), visible);
+        $(".notification__content").shouldBe(exactText("Ошибка! Неверно указан логин или пароль"), visible);
     }
 
     @Test
@@ -51,8 +52,8 @@ class LoginTest {
         $("[data-test-id = login] input").setValue(user.getLogin());
         $("[data-test-id = password] input").setValue(user.getPassword());
         $("[data-test-id = action-login]").click();
-        $("[data-test-id = error-notification]").shouldBe(exactText("Ошибка").visible);
-        $("[data-test-id = error-notification]").shouldBe(exactText("Пользователь заблокирован").visible);
+        $(".notification__title").shouldBe(exactText("Ошибка"), visible);
+        $(".notification__content").shouldBe(exactText("Ошибка! Пользователь заблокирован"), visible);
     }
 
     @Test
@@ -63,8 +64,8 @@ class LoginTest {
         $("[data-test-id = login] input").setValue(user.getLogin());
         $("[data-test-id = password] input").setValue(user.getPassword() + "password");
         $("[data-test-id = action-login]").click();
-        $("[data-test-id = error-notification]").shouldBe(exactText("Ошибка").visible);;
-        $("[data-test-id = error-notification]").shouldBe(exactText("Неверно указан логин или пароль").visible);;
+        $(".notification__title").shouldBe(exactText("Ошибка"), visible);
+        $(".notification__content").shouldBe(exactText("Ошибка! Неверно указан логин или пароль"), visible);
     }
 
     @Test
@@ -75,7 +76,7 @@ class LoginTest {
         $("[data-test-id = login] input").setValue(user.getLogin() + "login");
         $("[data-test-id = password] input").setValue(user.getPassword() + "password");
         $("[data-test-id = action-login]").click();
-        $("[data-test-id = error-notification]").shouldBe(exactText("Ошибка").visible);;
-        $("[data-test-id = error-notification]").shouldBe(exactText("Неверно указан логин или пароль").visible);;
+        $(".notification__title").shouldBe(exactText("Ошибка"), visible);
+        $(".notification__content").shouldBe(exactText("Ошибка! Неверно указан логин или пароль"), visible);
     }
 }
